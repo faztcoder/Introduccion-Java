@@ -21,46 +21,35 @@ public class TODOList implements TODO {
             System.out.println("4. Obtener último TODO");
             System.out.println("5. Eliminar último TODO");
             opcion = sc.nextInt();
+            String valor = String.valueOf(opcion).trim();
             sc.nextLine(); // limpiar buffer
 
-            switch (opcion) {
-                case 0:
-                    System.out.println("Saliendo...");
-                    break;
+            switch (opcion = Integer.parseInt(valor)) {
+                case 0 -> System.out.println("Saliendo...");
 
-                case 1:
+                case 1 -> {
                     System.out.println("Agrega un TODO:");
                     String tarea = sc.nextLine();
                     setAgregarTODO(Collections.singletonList(tarea));
-                    break;
+                }
 
-                case 2:
-                    getTODO();
-                    break;
+                case 2 -> getTODO();
 
-                case 3:
-                    getFirst();
-                    break;
+                case 3 -> getFirst();
 
-                case 4:
-                    getLastTODO();
-                    break;
+                case 4 -> getLastTODO();
 
-                case 5:
-                    deleteLastTODO();
-                    break;
+                case 5 -> deleteLastTODO();
 
-                default:
-                    System.out.println("Opción no encontrada⚠️");
-                    break;
+                default -> System.out.println("Opción no encontrada⚠️");
             }
         }
     }
 
     @Override
     public void setAgregarTODO(List<String> TODO) {
-        System.out.println("\nTODO agregado 👉🏻 " + listaTareas);
         listaTareas.addAll(TODO);
+        System.out.println("\nTODO agregado 👉🏻 " + listaTareas.getLast());
     }
 
     @Override
@@ -82,12 +71,17 @@ public class TODOList implements TODO {
 
     @Override
     public void deleteLastTODO() {
-        System.out.println("\nTODO eliminado 👉🏻 " + listaTareas.removeLast());
-        if (Boolean.parseBoolean(listaTareas.getFirst())) {
-            System.out.println("Eliminando el primer TODO agregado");
-            listaTareas.clear();
-        } else {
+
+        if (listaTareas.size() > 1) {
+            System.out.println("\nTODO eliminado 👉🏻" + listaTareas.getLast());
             listaTareas.removeLast();
+        } else if (listaTareas.size() == 1) {
+            System.out.println("\nTODO eliminado 👉🏻" + listaTareas.getFirst());
+            listaTareas.removeFirst();
+            System.out.println("La lista está vacía🗑️");
+        } else {
+            listaTareas.isEmpty();
+            System.out.println("La lista está vacía🗑️");
         }
     }
 
