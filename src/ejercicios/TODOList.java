@@ -80,7 +80,6 @@ public class TODOList implements TODO {
             listaTareas.removeFirst();
             System.out.println("La lista está vacía🗑️");
         } else {
-            listaTareas.isEmpty();
             System.out.println("La lista está vacía🗑️");
         }
     }
