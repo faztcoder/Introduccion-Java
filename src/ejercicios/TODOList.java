@@ -24,12 +24,12 @@ public class TODOList implements TODO {
             String valor = String.valueOf(opcion).trim();
             sc.nextLine(); // limpiar buffer
 
-            switch (opcion = Integer.parseInt(valor)) {
+            switch (Integer.parseInt(valor)) {
                 case 0 -> System.out.println("Saliendo...");
 
                 case 1 -> {
                     System.out.println("Agrega un TODO:");
-                    String tarea = sc.nextLine();
+                    String tarea = sc.nextLine().trim();
                     setAgregarTODO(Collections.singletonList(tarea));
                 }
 
